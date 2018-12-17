@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WrPdoInfoDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WrPdoInfoDetail">
+        <result column="UUID" property="uuid" />
+        <result column="SN" property="sn" />
+        <result column="INT_NM" property="intNm" />
+        <result column="WPC_CD" property="wpcCd" />
+        <result column="WPC_SN" property="wpcSn" />
+        <result column="INT_BD" property="intBd" />
+        <result column="INT_DL" property="intDl" />
+        <result column="WIU_CD" property="wiuCd" />
+        <result column="SOUR_TP" property="sourTp" />
+        <result column="INT_USE" property="intUse" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="GWOA_TP" property="gwoaTp" />
+        <result column="IS_PIPE" property="isPipe" />
+        <result column="WRTR_TP" property="wrtrTp" />
+        <result column="AD_CD" property="adCd" />
+        <result column="WRZ_CD" property="wrzCd" />
+        <result column="ADDR" property="addr" />
+        <result column="INT_TP" property="intTp" />
+        <result column="GRO_TP" property="groTp" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="TS" property="ts" />
+        <result column="STATE" property="state" />
+        <result column="NT" property="nt" />
+        <result column="AD_NM" property="adNm" />
+        <result column="WIU_NM" property="wiuNm" />
+        <result column="WIU_AD_CD" property="wiuAdCd" />
+        <result column="WIU_ACCOUNT" property="wiuAccount" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        UUID, SN, INT_NM, WPC_CD, WPC_SN, INT_BD, INT_DL, WIU_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP, AD_CD, WRZ_CD, ADDR, INT_TP, GRO_TP, LGTD, LTTD, TS, STATE, NT, AD_NM, WIU_NM, WIU_AD_CD, WIU_ACCOUNT
+    </sql>
+
+</mapper>

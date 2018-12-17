@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WrWpcMMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WrWpcM">
+        <id column="WPC_CD" property="wpcCd" />
+        <result column="WPC_SN" property="wpcSn" />
+        <result column="WRP_NM" property="wrpNm" />
+        <result column="AD_CD" property="adCd" />
+        <result column="WIU_CD" property="wiuCd" />
+        <result column="INT_BD" property="intBd" />
+        <result column="INT_DL" property="intDl" />
+        <result column="MAN_ORG_CD" property="manOrgCd" />
+        <result column="CERT_COND" property="certCond" />
+        <result column="CERT_PRT_CD" property="certPrtCd" />
+        <result column="DRAW_DT" property="drawDt" />
+        <result column="DRAW_STAFF" property="drawStaff" />
+        <result column="TS" property="ts" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        WPC_CD, WPC_SN, WRP_NM, AD_CD, WIU_CD, INT_BD, INT_DL, MAN_ORG_CD, CERT_COND, CERT_PRT_CD, DRAW_DT, DRAW_STAFF, TS, NT
+    </sql>
+
+</mapper>

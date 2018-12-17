@@ -1,0 +1,98 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="uuid" name="水源分组代码" value="${item.uuid}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="sn" name="序号" value="${item.sn}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="groupNm" name="水源分组名称" value="${item.groupNm}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wpcCd" name="取水口许可证编码" value="${item.wpcCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wpcSn" name="取水许可证号" value="${item.wpcSn}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intBd" name="取水许可证开始日期" value="${item.intBd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intDl" name="取水许可证结束日期" value="${item.intDl}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wiuCd" name="取水用户编码" value="${item.wiuCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="sourTp" name="水源类型" value="${item.sourTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intUse" name="取水用途" value="${item.intUse}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="tradTp" name="取水行业" value="${item.tradTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="gwoaTp" name="地下水超采区类型" value="${item.gwoaTp}" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                    <!--<#selectDetail name="水源类型" id="sourTp"  underline="true">-->
+                        <!--<option value="">&#45;&#45;&#45;&#45;</option>-->
+                        <!--<option value="1">地表水</option>-->
+                        <!--<option value="2">地下水</option>-->
+                        <!--<option value="3">自来水</option>-->
+                    <!--</#selectDetail>-->
+
+                    <!--<#selectDetail name="取水用途" id="intUse" underline="true" >-->
+                        <!--<option value="">&#45;&#45;&#45;&#45;</option>-->
+                        <!--<option value="1">疏干排水</option>-->
+                        <!--<option value="2">地源热泵</option>-->
+                        <!--<option value="3">水源热泵</option>-->
+                        <!--<option value="4">水力发电</option>-->
+                        <!--<option value="5">火力发电</option>-->
+                        <!--<option value="6">农村集中式饮水工程</option>-->
+                    <!--</#selectDetail>-->
+                    <!--<#selectDetail name="取水行业" id="tradTp" underline="true" >-->
+                        <!--<option value="">&#45;&#45;&#45;&#45;</option>-->
+                        <!--<option value="1">农业</option>-->
+                        <!--<option value="2">工商业</option>-->
+                        <!--<option value="3">城镇公共供水</option>-->
+                        <!--<option value="4">特种行业</option>-->
+                        <!--<option value="5">其它</option>-->
+                    <!--</#selectDetail>-->
+                    <!--<#selectDetail name="地下水超采区类型" id="gwoaTp" underline="true">-->
+                        <!--<option value="">&#45;&#45;&#45;&#45;</option>-->
+                        <!--<option value="1">非超采区</option>-->
+                        <!--<option value="2">一般超采区</option>-->
+                        <!--<option value="3">严重超采区</option>-->
+                    <!--</#selectDetail>-->
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="isPipe" name="管网覆盖" value="${item.isPipe}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wrtrTp" name="税额等次" value="${item.wrtrTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                    <!--<#selectDetail name="管网覆盖" id="isPipe" underline="true">-->
+                        <!--<option value="">&#45;&#45;&#45;&#45;</option>-->
+                        <!--<option value="1">覆盖</option>-->
+                        <!--<option value="2">未覆盖</option>-->
+                    <!--</#selectDetail>-->
+                    <!--<#selectDetail  name="税额等次" id="wrtrTp" underline="true">-->
+                        <!--<option value="">&#45;&#45;&#45;&#45;</option>-->
+                        <!--<option value="1">一级</option>-->
+                        <!--<option value="2">二级</option>-->
+                        <!--<option value="3">三级</option>-->
+                    <!--</#selectDetail>-->
+                            <#input id="adCd" name="取水口所在行政分区" value="${item.adCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wrzCd" name="取水口所在水资源分区" value="${item.wrzCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="addr" name="所在地" value="${item.addr}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intTp" name="取水方式" value="${item.intTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="groTp" name="地下水类型" value="${item.groTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="lgtd" name="经度" value="${item.lgtd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="lttd" name="纬度" value="${item.lttd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="state" name="水源状态" value="${item.state}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="nt" name="备注" value="${item.nt}" style="background-color: #ffffff;border:none" readonly="readonly"  />
+                </div>
+            </div>
+
+            <!--<div class="row btn-group-m-t">-->
+                <!--<div class="col-sm-10">-->
+                    <!--<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WrPdoGroupInfoDlg.editSubmit()"/>-->
+                    <!--<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WrPdoGroupInfoDlg.close()"/>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+<script>
+    $("#sourTp option[value='${item.sourTp}']").attr("selected","selected");
+    $("#intUse option[value='${item.intUse}']").attr("selected","selected");
+    $("#tradTp option[value='${item.tradTp}']").attr("selected","selected");
+    $("#gwoaTp option[value='${item.gwoaTp}']").attr("selected","selected");
+    $("#isPipe option[value='${item.isPipe}']").attr("selected","selected");
+    $("#wrtrTp option[value='${item.wrtrTp}']").attr("selected","selected");
+    $("#state option[value='${item.state}']").attr("selected","selected");
+</script>
+<script src="${ctxPath}/static/modular/szys/wrPdoGroup/wrPdoGroup_info.js"></script>
+@}

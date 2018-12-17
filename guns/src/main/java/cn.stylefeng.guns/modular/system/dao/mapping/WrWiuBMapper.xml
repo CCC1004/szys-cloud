@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WrWiuBMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WrWiuB">
+        <id column="UUID" property="uuid" />
+        <result column="DJXH" property="djxh" />
+        <result column="NSRSBH" property="nsrsbh" />
+        <result column="WIU_NM" property="wiuNm" />
+        <result column="LR_NM" property="lrNm" />
+        <result column="LAW_ATT" property="lawAtt" />
+        <result column="USER_TP" property="userTp" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="IS_HI_LEV" property="isHiLev" />
+        <result column="ECO_TP" property="ecoTp" />
+        <result column="MON_G" property="monG" />
+        <result column="WIU_TP" property="wiuTp" />
+        <result column="YR_WU" property="yrWu" />
+        <result column="CERT_STA" property="certSta" />
+        <result column="IS_VIMP" property="isVimp" />
+        <result column="ADL_CD" property="adlCd" />
+        <result column="SLJG_CD" property="sljgCd" />
+        <result column="SWJG_CD" property="swjgCd" />
+        <result column="WEB" property="web" />
+        <result column="E_MAIL" property="eMail" />
+        <result column="ADDR" property="addr" />
+        <result column="ZIP" property="zip" />
+        <result column="TEL" property="tel" />
+        <result column="FAX" property="fax" />
+        <result column="ISUSE" property="isuse" />
+        <result column="RUN_STA" property="runSta" />
+        <result column="TS" property="ts" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询映射结果，返回结果为map -->
+    <resultMap id="BaseResultMap2" type="java.util.HashMap">
+        <id column="UUID" property="uuid" />
+        <result column="DJXH" property="djxh" />
+        <result column="NSRSBH" property="nsrsbh" />
+        <result column="WIU_NM" property="wiuNm" />
+        <result column="LR_NM" property="lrNm" />
+        <result column="LAW_ATT" property="lawAtt" />
+        <result column="USER_TP" property="userTp" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="IS_HI_LEV" property="isHiLev" />
+        <result column="ECO_TP" property="ecoTp" />
+        <result column="MON_G" property="monG" />
+        <result column="WIU_TP" property="wiuTp" />
+        <result column="YR_WU" property="yrWu" />
+        <result column="CERT_STA" property="certSta" />
+        <result column="IS_VIMP" property="isVimp" />
+        <result column="ADL_CD" property="adlCd" />
+        <result column="SLJG_CD" property="sljgCd" />
+        <result column="SWJG_CD" property="swjgCd" />
+        <result column="WEB" property="web" />
+        <result column="E_MAIL" property="eMail" />
+        <result column="ADDR" property="addr" />
+        <result column="ZIP" property="zip" />
+        <result column="TEL" property="tel" />
+        <result column="FAX" property="fax" />
+        <result column="ISUSE" property="isuse" />
+        <result column="RUN_STA" property="runSta" />
+        <result column="TS" property="ts" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        UUID, DJXH, NSRSBH, WIU_NM, LR_NM, LAW_ATT, USER_TP, TRAD_TP, IS_HI_LEV, ECO_TP, MON_G, WIU_TP, YR_WU, CERT_STA, IS_VIMP, ADL_CD, SLJG_CD, SWJG_CD, WEB, E_MAIL, ADDR, ZIP, TEL, FAX, ISUSE, RUN_STA, TS, LGTD, LTTD, NT
+    </sql>
+
+    <select id="selectByAccount" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_wiu_b
+        where NSRSBH = #{account}
+
+    </select>
+    
+    
+    <select id="selectWrWiuBMapByParams" resultMap="BaseResultMap2">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_wiu_b
+        where 1=1
+        <if test="wiuNm != null and wiuNm != ''">
+            <bind name="wiuNmLike" value="'%' + wiuNm + '%'"/>
+            and WIU_NM like #{wiuNmLike}
+        </if>
+        <if test="isHiLev != null and isHiLev != ''">
+            and IS_HI_LEV = #{isHiLev}
+        </if>
+        <if test="certSta != null and certSta != ''">
+            and CERT_STA = #{certSta}
+        </if>
+        <if test="adlCd != null and adlCd != ''">
+            and ADL_CD = #{adlCd}
+        </if>
+    </select>
+    <!--   and ADL_CD like CONCAT(#{adlCd},'%')-->
+    
+
+</mapper>

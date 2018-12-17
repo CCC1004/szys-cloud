@@ -1,0 +1,196 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal"  id="wrPdoInfo">
+
+            <input id="uuid"  type="hidden" name="取水口代码" value="${item.uuid}"/>
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="sn" name="序号" value="${item.sn}" style="background-color: #ffffff;border:none" readonly="readonly" underline="true"/>
+                            <#input id="intNm" name="取水口名称" value="${item.intNm}"  style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wpcCd" name="取水口许可证编码" value="${item.wpcCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="wpcSn" name="取水许可证号" value="${item.wpcSn}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intBd" name="取水许可证其实日期" value="${item.intBd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intDl" name="取水许可证结束日期" value="${item.intDl}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <!--<#input id="wiuCd" name="取水用户编码" value="${item.wiuCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>-->
+
+                            <#select name="取水用户编码" id="wiuCd" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;">
+                                <option value="">----</option>
+                                @for(item in wiubList){
+                                <option value="${item.uuid}">${item.wiuNm}</option>
+                                @}
+                            </#select>
+                            <#select name="水源类型" id="sourTp"  underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;">
+                                <option value="">----</option>
+                                @for(item in dict.sourTp){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                            </#select>
+
+                            <#select name="取水用途" id="intUse" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;" >
+            <option value="">----</option>
+            @for(item in dict.intUse){
+            <option value="${item.key}">${item.value}</option>
+            @}
+                            </#select>
+                                <#select name="取水行业" id="tradTp" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;" >
+        <option value="">----</option>
+        @for(item in dict.tradTp){
+        <option value="${item.key}">${item.value}</option>
+        @}
+                            </#select>
+                                <#select name="地下水超采区类型" id="gwoaTp" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;">
+    <option value="">----</option>
+    @for(item in dict.gwoaTp){
+    <option value="${item.key}">${item.value}</option>
+    @}
+                            </#select>
+                </div>
+
+                <div class="col-sm-6">
+                            <#select name="管网覆盖" id="isPipe" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;">
+
+                                <option value="">----</option>
+                                @for(item in dict.isPipe){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                            </#select>
+                            <#select  name="税额等次" id="wrtrTp" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;">
+                                <option value="">----</option>
+                                @for(item in dict.wrtrTp){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                            </#select>
+                            <!--<#input id="adCd" name="取水口所在行政分区" value="${item.adCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>-->
+                            <#input id="adNm" name="取水口所在行政分区" disabled="disabled" hidden="adCd"
+                            clickFun="WrPdoInfoInfoDlg.showAddvSelectTree(); return false;"
+                            style="background-color: #ffffff !important;border:none" value="${adNm!}" hiddenValue="${item.adCd!}"/>
+
+                            <#input id="wrzCd" name="取水口所在水资源分区" value="${item.wrzCd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+
+                            <#input id="addr" name="所在地" value="${item.addr}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="intTp" name="取水方式" value="${item.intTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="groTp" name="地下水类型（深层地下水和浅层地下水）" value="${item.groTp}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="lgtd" name="经度" value="${item.lgtd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#input id="lttd" name="纬度" value="${item.lttd}" style="background-color: #ffffff;border:none" readonly="readonly"  underline="true"/>
+                            <#select name="水源状态" id="state" underline="true"  disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none; ">
+                                <option value="">----</option>
+                                @for(item in dict.state){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                            </#select>
+                            <#input id="nt" name="备注" value="${item.nt}" style="background-color: #ffffff;border:none" readonly="readonly"  />
+                </div>
+            </div>
+
+                <!-- 行政区划的选择框 -->
+                <div id="parentAddvMenu" class="menuContent"
+                     style="display: none; position: absolute; z-index: 200;">
+                    <ul id="parentAddvMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+                </div>
+
+<!--            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WrPdoInfoInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WrPdoInfoInfoDlg.close()"/>
+                </div>
+            </div>-->
+        </div>
+
+    </div>
+</div>
+<script>
+/*    laydate.render({
+        elem: '#intBd'
+    });
+    laydate.render({
+        elem: '#intDl'
+    });*/
+    $("#sourTp option[value='${item.sourTp}']").attr("selected","selected");
+    $("#intUse option[value='${item.intUse}']").attr("selected","selected");
+    $("#tradTp option[value='${item.tradTp}']").attr("selected","selected");
+    $("#gwoaTp option[value='${item.gwoaTp}']").attr("selected","selected");
+    $("#isPipe option[value='${item.isPipe}']").attr("selected","selected");
+    $("#wrtrTp option[value='${item.wrtrTp}']").attr("selected","selected");
+    $("#state option[value='${item.state}']").attr("selected","selected");
+    $("#wiuCd option[value='${item.wiuCd}']").attr("selected","selected");
+
+ /*   a=1;
+    switch(a)
+    {
+        case 1:
+            break;
+        default:
+            break;
+    }
+*/
+    function ITEn() {
+        var intUseValue = $("#intUse").val();
+        var tradTpValue = $("#tradTp").val();
+        if (intUseValue=='' && tradTpValue=='')
+        {
+            $("#intUse").removeAttr("disabled");
+            $("#tradTp").removeAttr("disabled");
+        }
+        else if (intUseValue!='' && tradTpValue=='')
+        {
+            $("#intUse").removeAttr("disabled");
+            $("#tradTp").attr("disabled", "disabled");
+        }
+        else if (intUseValue=='' && tradTpValue!='')
+        {
+            $("#tradTp").removeAttr("disabled");
+            $("#intUse").attr("disabled", "disabled");
+        }
+        else {
+            $("#intUse").removeAttr("disabled");
+            $("#tradTp").attr("disabled", "disabled");
+        }
+    }
+
+    function tradTpEn() {
+        var tradTpValue = $("#tradTp").val();
+        if (tradTpValue!='')
+        {
+            $("#tradTp").removeAttr("disabled");
+            $("#intUse").attr("disabled", "disabled");
+        }
+        else
+        {
+            $("#tradTp").attr("disabled", "disabled");
+            $("#intUse").removeAttr("disabled");
+        }
+    }
+    
+    function sourTpEn() {
+        var sourTpValue = $("#sourTp").val();
+        if (sourTpValue=='0')
+        {
+            $("#intUse").attr("disabled", "disabled");
+            $("#tradTp").attr("disabled", "disabled");
+            $("#gwoaTp").attr("disabled", "disabled");
+        }
+        else
+        {
+            $("#intUse").removeAttr("disabled");
+            $("#tradTp").removeAttr("disabled");
+            $("#gwoaTp").removeAttr("disabled");
+            ITEn();
+        }
+    }
+
+
+/*    sourTpEn();
+    ITEn();
+    $("#sourTp").change(function () {
+        sourTpEn();
+    });
+    $("#intUse").change(function () {
+        ITEn();
+    });
+    $("#tradTp").change(function () {
+        ITEn();
+    });*/
+</script>
+<script src="${ctxPath}/static/modular/szys/wrPdoInfo/wrPdoInfo_info.js"></script>
+@}

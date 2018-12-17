@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.DeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Dept">
+        <id column="id" property="id"/>
+        <result column="num" property="num"/>
+        <result column="pid" property="pid"/>
+        <result column="pids" property="pids"/>
+        <result column="simplename" property="simplename"/>
+        <result column="fullname" property="fullname"/>
+        <result column="tips" property="tips"/>
+        <result column="version" property="version"/>
+    </resultMap>
+
+    <!-- 行政区划tree -->
+    <select id="adTree" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        SELECT AD_CD AS id,
+        (CASE
+            WHEN ( substr(AD_CD,3,4)='0000') THEN 0
+            WHEN ( substr(AD_CD,5,2)='00') THEN  CONCAT(substr(AD_CD,1,2),'0000')
+            ELSE  CONCAT(substr(AD_CD,1,4),'00') END)
+            AS pId,
+        AD_NM as name,
+        (CASE
+            WHEN (( substr(AD_CD,3,4)='0000') OR AD_CD IS NULL) THEN
+            'true'
+            ELSE
+            'false'
+            END
+            ) as isOpen
+        FROM WR_AD_B
+	</select>
+
+    <!-- 行政区划tree， 根据用户所在行政区划，获取行政区划ztree的节点列表-->
+    <select id="adTreeByAdidLike" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        SELECT AD_CD AS id,
+        (CASE
+            WHEN ( substr(AD_CD,3,4)='0000') THEN 0
+            WHEN ( substr(AD_CD,5,2)='00') THEN  CONCAT(substr(AD_CD,1,2),'0000')
+            ELSE  CONCAT(substr(AD_CD,1,4),'00') END)
+            AS pId,
+        AD_NM as name,
+        (CASE
+            WHEN (( substr(AD_CD,3,4)='0000') OR AD_CD IS NULL) THEN
+            'true'
+            ELSE
+            'false'
+            END
+            ) as isOpen
+        FROM WR_AD_B
+        where 1=1
+        <if test="adidLike != null and adidLike != ''">
+          and AD_CD LIKE CONCAT(#{adidLike},'%')
+        </if>
+    </select>
+
+    <select id="tree" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+		select id,pid as pId,simplename as name,
+		(
+		CASE
+		WHEN (pId = 0 OR pId IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as isOpen from sys_dept
+	</select>
+
+    <select id="list" resultType="map">
+        select * from sys_dept
+        <if test="condition != null and condition != ''">
+            where simplename like CONCAT('%',#{condition},'%') or fullname like CONCAT('%',#{condition},'%')
+        </if>
+        order by num ASC
+    </select>
+
+</mapper>

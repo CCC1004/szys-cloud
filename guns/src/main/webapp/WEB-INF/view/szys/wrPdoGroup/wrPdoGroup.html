@@ -1,0 +1,84 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>水源分组管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="groupNm" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="wpcSn" name="取水许可证号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="sourTp" name="水源类型" >
+                                <option value="">--请选择--</option>
+                                @for(item in dict.sourTp){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="intUse" name="取水用途" >
+                                <option value="">--请选择--</option>
+                                @for(item in dict.intUse){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                                </#SelectCon>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#SelectCon id="tradTp" name="取水行业" >
+                                <option value="">--请选择--</option>
+                                @for(item in dict.tradTp){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="gwoaTp" name="地下水超采区类型" >
+                                <option value="">--请选择--</option>
+                                @for(item in dict.gwoaTp){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="isPipe" name="管网覆盖" >
+                                <option value="">--请选择--</option>
+                                @for(item in dict.isPipe){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="wrtrTp" name="税额等次" >
+                                    <option value="">--请选择--</option>
+                                @for(item in dict.wrtrTp){
+                                <option value="${item.key}">${item.value}</option>
+                                @}
+                                </#SelectCon>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="WrPdoGroupTableToolbar" role="group">
+                            <#button name="搜索" icon="fa-search" clickFun="WrPdoGroup.search()"/>
+                            <!--<#button name="分组" icon="fa-hourglass" clickFun="WrPdoGroup.grouping()" space="true"/>-->
+                            @if(shiro.hasPermission("/wrPdoGroup/detail")){
+                            <#button name="查看详情" icon="fa-indent" clickFun="WrPdoGroup.openWrPdoGroupDetail()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="WrPdoGroupTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/szys/wrPdoGroup/wrPdoGroup.js"></script>
+@}

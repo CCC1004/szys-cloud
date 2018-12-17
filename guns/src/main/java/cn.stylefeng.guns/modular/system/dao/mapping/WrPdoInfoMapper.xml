@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WrPdoInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WrPdoInfo">
+        <id column="UUID" property="uuid" />
+        <result column="SN" property="sn" />
+        <result column="INT_NM" property="intNm" />
+        <result column="WPC_CD" property="wpcCd" />
+        <result column="WPC_SN" property="wpcSn" />
+        <result column="INT_BD" property="intBd" />
+        <result column="INT_DL" property="intDl" />
+        <result column="WIU_CD" property="wiuCd" />
+        <result column="SOUR_TP" property="sourTp" />
+        <result column="INT_USE" property="intUse" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="GWOA_TP" property="gwoaTp" />
+        <result column="IS_PIPE" property="isPipe" />
+        <result column="WRTR_TP" property="wrtrTp" />
+        <result column="AD_CD" property="adCd" />
+        <result column="WRZ_CD" property="wrzCd" />
+        <result column="ADDR" property="addr" />
+        <result column="INT_TP" property="intTp" />
+        <result column="GRO_TP" property="groTp" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="TS" property="ts" />
+        <result column="STATE" property="state" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询映射结果  map -->
+    <resultMap id="BaseResultMap2" type="java.util.HashMap">
+        <id column="UUID" property="uuid" />
+        <result column="SN" property="sn" />
+        <result column="INT_NM" property="intNm" />
+        <result column="WPC_CD" property="wpcCd" />
+        <result column="WPC_SN" property="wpcSn" />
+        <result column="INT_BD" property="intBd" />
+        <result column="INT_DL" property="intDl" />
+        <result column="WIU_CD" property="wiuCd" />
+        <result column="SOUR_TP" property="sourTp" />
+        <result column="INT_USE" property="intUse" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="GWOA_TP" property="gwoaTp" />
+        <result column="IS_PIPE" property="isPipe" />
+        <result column="WRTR_TP" property="wrtrTp" />
+        <result column="AD_CD" property="adCd" />
+        <result column="WRZ_CD" property="wrzCd" />
+        <result column="ADDR" property="addr" />
+        <result column="INT_TP" property="intTp" />
+        <result column="GRO_TP" property="groTp" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="TS" property="ts" />
+        <result column="STATE" property="state" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        UUID, SN, INT_NM, WPC_CD, WPC_SN, INT_BD, INT_DL, WIU_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP, AD_CD, WRZ_CD, ADDR, INT_TP, GRO_TP, LGTD, LTTD, TS, STATE, NT
+    </sql>
+
+    <!-- 水源分组信息 -->
+    <sql id="Base_Column_GROUP_MAP">
+        isNullAndEmpty(WPC_CD) AS isWpcNull, WPC_CD as wpcCd, AD_CD as adCd, WIU_CD as wiuCd,
+        SOUR_TP as sourTp, INT_USE as intUse, TRAD_TP as tradTp, GWOA_TP as gwoaTp, IS_PIPE as isPipe, WRTR_TP as wrtrTp
+    </sql>
+
+
+    <!--              2.    取用水户                          -->
+    <!-- 根据取用水户编码，获取取水口列表   （弃用） -->
+    <select id="selectByWiucd" resultMap="BaseResultMap2">
+        select
+        *
+        from wr_pdo_info wpi INNER JOIN wr_wiu_b wwb
+        ON wwb.ADL_CD LIKE CONCAT(#{wiuCd},'%')
+        AND wpi.WIU_CD=wwb.UUID
+    </select>
+
+    <!--  根据取用水户分类，获取取水口列表  -->
+    <select id="selectByWiucd2" resultMap="BaseResultMap2">
+        select
+        *
+        from wr_pdo_info wpi INNER JOIN wr_wiu_b wwb
+        ON wwb.NSRSBH=#{wiuCd}
+        AND wpi.WIU_CD=wwb.UUID
+    </select>
+
+    <!-- 根据取用水户编码，获取取水口列表,并进行分组  （弃用） -->
+    <select id="getGroupMapByUuid" resultType="map">
+        select
+        <include refid="Base_Column_GROUP_MAP"/>
+        from wr_pdo_info
+        where 1=1
+        and WIU_CD in (SELECT w.UUID FROM wr_wiu_b w WHERE w.ADL_CD LIKE CONCAT(#{adidLike},'%'))
+        GROUP BY isNullAndEmpty(WPC_CD), WPC_CD, WIU_CD, AD_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP
+    </select>
+
+    <!-- 根据取用水户编码，获取取水口列表,并进行分组 -->
+    <select id="getGroupMapByWiuCd" resultType="map">
+        select
+        <include refid="Base_Column_GROUP_MAP"/>
+        from wr_pdo_info
+        where 1=1
+        and WIU_CD = #{optWiuCd}
+        GROUP BY isNullAndEmpty(WPC_CD), WPC_CD, WIU_CD, AD_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP
+    </select>
+
+    <!-- 根据取用水户过滤，得到的分组信息，来获取其取水口信息列表  （弃用） -->
+    <select id="getPdoListByGroupInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_info
+        where 1=1
+        and WIU_CD in (SELECT w.UUID FROM wr_wiu_b w WHERE w.ADL_CD LIKE CONCAT(#{adidLike},'%'))
+        <include refid="groupCondition"/>
+    </select>
+
+    <select id="getPdoListByGroupInfoAndWiuCd" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_info
+        where 1=1
+        and WIU_CD = #{optWiuCd}
+        <include refid="groupCondition"/>
+    </select>
+
+
+    <!--         1.   行政区划                 -->
+    <!-- 根据adidLike （弃用）-->
+    <select id="getGroupMapByAdidLike" resultType="map">
+        select
+        <include refid="Base_Column_GROUP_MAP"/>
+        from wr_pdo_info
+        where 1=1
+        <if test="adidLike != null and adidLike != ''">
+            and AD_CD like CONCAT(#{adidLike},'%')
+        </if>
+        GROUP BY isNullAndEmpty(WPC_CD), WPC_CD, WIU_CD, AD_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP
+    </select>
+
+    <!-- 根据行政区划adidLike过滤，得到的分组信息，来获取其取水口信息列表（弃用） -->
+    <select id="getPdoListByGroupInfoAndAdidLike" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_info
+        where 1=1
+        <if test="adidLike != null and adidLike != ''">
+            and AD_CD like CONCAT(#{adidLike},'%')
+        </if>
+        <include refid="groupCondition"/>
+    </select>
+
+    <!-- 根据adid -->
+    <select id="getGroupMapByAdid" resultType="map">
+        select
+        <include refid="Base_Column_GROUP_MAP"/>
+        from wr_pdo_info
+        where 1=1
+        <if test="adid != null and adid != ''">
+            and WIU_CD in (SELECT wiu.UUID FROM wr_wiu_b wiu WHERE wiu.ADL_CD = #{adid})
+        </if>
+        GROUP BY isNullAndEmpty(WPC_CD), WPC_CD, WIU_CD, AD_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP
+    </select>
+
+    <!-- 根据行政区划adid过滤，得到的分组信息，来获取其取水口信息列表 -->
+    <select id="getPdoListByGroupInfoAndAdid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_info
+        where 1=1
+        <if test="adid != null and adid != ''">
+            and WIU_CD in (SELECT wiu.UUID FROM wr_wiu_b wiu WHERE wiu.ADL_CD = #{adid})
+        </if>
+        <include refid="groupCondition"/>
+    </select>
+
+
+    <!--         3.根据   取水许可证     过滤           -->
+    <!-- (弃用)  -->
+    <select id="getGroupMapByWpcM" resultType="map">
+        select
+        <include refid="Base_Column_GROUP_MAP"/>
+        from wr_pdo_info
+        where 1=1
+            and WPC_CD in (SELECT m.WPC_CD FROM wr_wpc_m m WHERE m.AD_CD LIKE CONCAT(#{adidLike},'%'))
+        GROUP BY isNullAndEmpty(WPC_CD), WPC_CD, WIU_CD, AD_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP
+    </select>
+
+    <select id="getGroupMapByWpcCd" resultType="map">
+        select
+        <include refid="Base_Column_GROUP_MAP"/>
+        from wr_pdo_info
+        where 1=1
+            and WPC_CD = #{optWpcCd}
+        GROUP BY isNullAndEmpty(WPC_CD), WPC_CD, WIU_CD, AD_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP
+    </select>
+
+
+    <!-- 根据取水许可证过滤，得到的分组信息，来获取其取水口信息列表 -->
+    <!-- （弃用） -->
+    <select id="getPdoListByGroupInfoAndWpcM" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_info
+        where 1=1
+          and WPC_CD in (SELECT m.WPC_CD FROM wr_wpc_m m WHERE m.AD_CD LIKE CONCAT(#{adidLike},'%'))
+        <include refid="groupCondition"/>
+    </select>
+
+    <select id="getPdoListByGroupInfoAndWpcCd" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_info
+        where 1=1
+          and WPC_CD = #{optWpcCd}
+        <include refid="groupCondition"/>
+    </select>
+
+
+    <!--  过滤条件  -->
+    <sql id="groupCondition">
+        <if test="isWpcNull != null and isWpcNull != ''">
+            and isNullAndEmpty(WPC_CD) = #{isWpcNull}
+        </if>
+        <if test="sourTp != null and sourTp != ''">
+            and SOUR_TP = #{sourTp}
+        </if>
+        <if test="intUse != null and intUse != ''">
+            and INT_USE = #{intUse}
+        </if>
+        <if test="tradTp != null and tradTp != ''">
+            and TRAD_TP = #{tradTp}
+        </if>
+        <if test="gwoaTp != null and gwoaTp != ''">
+            and GWOA_TP = #{gwoaTp}
+        </if>
+        <if test="isPipe != null and isPipe != ''">
+            and IS_PIPE = #{isPipe}
+        </if>
+        <if test="wrtrTp != null and wrtrTp != ''">
+            and WRTR_TP = #{wrtrTp}
+        </if>
+        <if test="wpcCd != null and wpcCd != ''">
+            and WPC_CD = #{wpcCd}
+        </if>
+        <if test="wiuCd != null and wiuCd != ''">
+            and WIU_CD = #{wiuCd}
+        </if>
+        <if test="acCd != null and acCd != ''">
+            and AC_CD = #{acCd}
+        </if>
+    </sql>
+
+
+</mapper>

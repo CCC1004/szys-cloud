@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="adCd" name="行政区划代码" underline="true"/>
+                            <#input id="adNm" name="行政区划名称" underline="true"/>
+                            <#input id="adShnm" name="行政区划简称"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="adA" name="行政区划面积" underline="true"/>
+                    <#select name="是否启用" id="isEnable" underline="true">
+                        <option value="1">是</option>
+                        <option value="2">否</option>
+                    </#select>
+                            <!--<#input id="ts" name="时间戳" underline="true"/>-->
+                            <#input id="nt" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WrAdBInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WrAdBInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/szys/wrAdB/wrAdB_info.js"></script>
+@}

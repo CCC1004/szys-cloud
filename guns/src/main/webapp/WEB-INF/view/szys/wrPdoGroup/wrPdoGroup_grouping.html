@@ -1,0 +1,55 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <input type="hidden" id="groupType" />
+                <div class="col-sm-4 col-md-4" align="center" id="wrAdB"
+                     style="height:28px;border: 1px solid #999999;background-color: #F5F5F5">
+                    <div>行政区划</div>
+                </div>
+                <div class="col-sm-4 col-md-4" align="center"
+                     style="height:28px;border: 1px solid #999999;background-color: #F5F5F5">
+                    <select name="wrWiuBSelect" id="wrWiuBSelect" style="width: 100%;">
+                        <option value="" disabled selected hidden>--取用水户--</option>
+                        @for(item in wiuList){
+                            <option value="${item.uuid}">${item.wiuNm}</option>
+                        @}
+                    </select>
+                </div>
+                <div class="col-sm-4 col-md-4" align="center"
+                     style="height:28px;border: 1px solid #999999;background-color: #F5F5F5">
+                    <select name="wrWpcMSelect" id="wrWpcMSelect" style="width: 100%;">
+                        <option value="" disabled selected hidden>--取水许可证--</option>
+                        <option value="0">无证</option>
+                        @for(item in wpcList){
+                            <option value="${item.wpcCd}">${item.wpcSn}</option>
+                        @}
+                    </select>
+                </div>
+            </div>
+
+            <#table id="groupingTable"/>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="分组" id="ensure" icon="fa-check" clickFun="Grouping.groupSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="Grouping.close()"/>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<style>
+    #wrAdB{
+        cursor:pointer;
+    }
+    #wrAdB:focus{
+        color: #FFFFFF;
+    }
+</style>
+<script src="${ctxPath}/static/modular/szys/wrPdoGroup/wrPdoGroup_grouping.js"></script>
+@}

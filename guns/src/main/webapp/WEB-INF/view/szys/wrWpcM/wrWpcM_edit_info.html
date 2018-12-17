@@ -1,0 +1,67 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="wrWpcM">
+
+                            <input id="wpcCd" name="取水许可证代码" value="${item.wpcCd}" type="hidden"/>
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="wpcSn" name="取水许可证编号" value="${item.wpcSn!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <#input id="wrpNm" name="取水权人名称" value="${item.wrpNm!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <!--<#input id="adCd" name="行政区划" value="${item.adCd}" underline="true"/>-->
+
+                            <#input id="adNm" name="行政区划" readonly="readonly" hidden="adCd"
+                            clickFun="WrWpcMInfoDlg.showAddvSelectTree(); return false;" disabled="disabled"
+                            style="background-color: #ffffff !important;border:none" underline="true" value="${adNm!}" hiddenValue="${item.adCd!}"/>
+
+                            <!--<#input id="wiuCd" name="取用水户代码" value="${item.wiuCd}" underline="true"/>-->
+                            <#select name="取水用户编码" id="wiuCd" underline="true" disabled="disabled" style="background-color: #ffffff;border:none;appearance:none; -moz-appearance:none; -webkit-appearance:none;">
+                                <option value="">----</option>
+                                @for(item in wiubList){
+                                <option value="${item.uuid}">${item.wiuNm}</option>
+                                @}
+                            </#select>
+                            <#input id="intBd" name="取水起始日期" value="${item.intBd!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <#input id="intDl" name="取水终止日期" value="${item.intDl!}" style="background-color: #ffffff;border:none" readonly="readonly" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="manOrgCd" name="监督管理单位代码" value="${item.manOrgCd!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <#input id="certCond" name="证件状态" value="${item.certCond!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <#input id="certPrtCd" name="证书印刷编号" value="${item.certPrtCd!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <#input id="drawDt" name="领取日期" value="${item.drawDt!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                            <#input id="drawStaff" name="领取人员" value="${item.drawStaff!}" underline="true" style="background-color: #ffffff;border:none" readonly="readonly"/>
+
+                            <#input id="nt" name="备注" value="${item.nt!}" style="background-color: #ffffff;border:none" readonly="readonly"/>
+                </div>
+            </div>
+
+            <!-- 行政区划的选择框 -->
+            <div id="parentAddvMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentAddvMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WrWpcMInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WrWpcMInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    laydate.render({
+        elem: '#intBd'
+    });
+    laydate.render({
+        elem: '#intDl'
+    });
+    laydate.render({
+        elem: '#drawDt'
+    });
+</script>
+<script src="${ctxPath}/static/modular/szys/wrWpcM/wrWpcM_info.js"></script>
+@}

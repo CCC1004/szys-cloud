@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WrPdoGroupMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WrPdoGroup">
+        <id column="UUID" property="uuid" />
+        <result column="SN" property="sn" />
+        <result column="GROUP_NM" property="groupNm" />
+        <result column="WPC_CD" property="wpcCd" />
+        <result column="WPC_SN" property="wpcSn" />
+        <result column="INT_BD" property="intBd" />
+        <result column="INT_DL" property="intDl" />
+        <result column="WIU_CD" property="wiuCd" />
+        <result column="SOUR_TP" property="sourTp" />
+        <result column="INT_USE" property="intUse" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="GWOA_TP" property="gwoaTp" />
+        <result column="IS_PIPE" property="isPipe" />
+        <result column="WRTR_TP" property="wrtrTp" />
+        <result column="AD_CD" property="adCd" />
+        <result column="WRZ_CD" property="wrzCd" />
+        <result column="ADDR" property="addr" />
+        <result column="INT_TP" property="intTp" />
+        <result column="GRO_TP" property="groTp" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="STATE" property="state" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询映射结果 map集合 -->
+    <resultMap id="BaseResultMap2" type="java.util.HashMap">
+        <id column="UUID" property="uuid" />
+        <result column="SN" property="sn" />
+        <result column="GROUP_NM" property="groupNm" />
+        <result column="WPC_CD" property="wpcCd" />
+        <result column="WPC_SN" property="wpcSn" />
+        <result column="INT_BD" property="intBd" />
+        <result column="INT_DL" property="intDl" />
+        <result column="WIU_CD" property="wiuCd" />
+        <result column="SOUR_TP" property="sourTp" />
+        <result column="INT_USE" property="intUse" />
+        <result column="TRAD_TP" property="tradTp" />
+        <result column="GWOA_TP" property="gwoaTp" />
+        <result column="IS_PIPE" property="isPipe" />
+        <result column="WRTR_TP" property="wrtrTp" />
+        <result column="AD_CD" property="adCd" />
+        <result column="WRZ_CD" property="wrzCd" />
+        <result column="ADDR" property="addr" />
+        <result column="INT_TP" property="intTp" />
+        <result column="GRO_TP" property="groTp" />
+        <result column="LGTD" property="lgtd" />
+        <result column="LTTD" property="lttd" />
+        <result column="STATE" property="state" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        UUID, SN, GROUP_NM, WPC_CD, WPC_SN, INT_BD, INT_DL, WIU_CD, SOUR_TP, INT_USE, TRAD_TP, GWOA_TP, IS_PIPE, WRTR_TP, AD_CD, WRZ_CD, ADDR, INT_TP, GRO_TP, LGTD, LTTD, STATE, NT
+    </sql>
+
+
+    <select id="getWrPdoGroupsPage" resultMap="BaseResultMap2">
+        select
+        <include refid="Base_Column_List"/>
+        from wr_pdo_group
+        where 1=1
+        <if test="groupNm != null and groupNm !=''">
+            <bind name="groupNmLike" value="'%' + groupNm + '%'"/>
+            and GROUP_NM like #{groupNmLike}
+        </if>
+        <if test="wpcSn != null and wpcSn !=''">
+            <bind name="wpcSnLike" value="'%' + wpcSn + '%'"/>
+            and WPC_SN like #{wpcSnLike}
+        </if>
+        <if test="sourTp != null and sourTp !=''">
+            and SOUR_TP = #{sourTp}
+        </if>
+        <if test="intUse != null and intUse !=''">
+            and INT_USE = #{intUse}
+        </if>
+        <if test="tradTp != null and tradTp !=''">
+            and TRAD_TP = #{tradTp}
+        </if>
+        <if test="gwoaTp != null and gwoaTp !=''">
+            and GWOA_TP = #{gwoaTp}
+        </if>
+        <if test="isPipe != null and isPipe !=''">
+            and IS_PIPE = #{isPipe}
+        </if>
+        <if test="wrtrTp != null and wrtrTp !=''">
+            and WRTR_TP = #{wrtrTp}
+        </if>
+        <choose>
+            <when test="orderByField != null and orderByField !=''">
+                <choose>
+                    <when test="isAsc == true">
+                        order by ${orderByField} ASC
+                    </when>
+                    <otherwise>
+                        order by ${orderByField} DESC
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                order by GROUP_NM ASC
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WrPdoPdogroupRelMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WrPdoPdogroupRel">
+        <id column="PDO_GROUP_ID" property="pdoGroupId" />
+        <result column="PDO_ID" property="pdoId" />
+        <result column="STATUS" property="status" />
+        <result column="TS" property="ts" />
+        <result column="NT" property="nt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PDO_GROUP_ID, PDO_ID, STATUS, TS, NT
+    </sql>
+
+    <select id="getRelListByGroupid" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM wr_pdo_pdogroup_rel
+        WHERE STATUS = #{status}
+        and PDO_GROUP_ID = (
+                SELECT
+                    r.PDO_GROUP_ID
+                FROM wr_pdo_pdogroup_rel r
+                WHERE r.STATUS = #{status}
+                 AND r.PDO_ID = #{wrPdoInfoId}
+            )
+    </select>
+
+</mapper>

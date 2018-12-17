@@ -1,0 +1,48 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <!--<#input id="uuid" name="水源分组代码" underline="true"/>-->
+                            <#input id="sn" name="序号" underline="true"/>
+                            <#input id="groupNm" name="水源分组名称" underline="true"/>
+                            <#input id="wpcCd" name="取水口许可证编码" underline="true"/>
+                            <#input id="wpcSn" name="取水许可证号" underline="true"/>
+                            <#input id="intBd" name="取水许可证开始日期" underline="true"/>
+                            <#input id="intDl" name="取水许可证结束日期" underline="true"/>
+                            <#input id="wiuCd" name="取水用户编码" underline="true"/>
+                            <#input id="sourTp" name="水源类型" underline="true"/>
+                            <#input id="intUse" name="取水用途" underline="true"/>
+                            <#input id="tradTp" name="取水行业" underline="true"/>
+                            <#input id="gwoaTp" name="地下水超采区类型"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="isPipe" name="管网覆盖" underline="true"/>
+                            <#input id="wrtrTp" name="税额等次" underline="true"/>
+                            <#input id="adCd" name="取水口所在行政分区" underline="true"/>
+                            <#input id="wrzCd" name="取水口所在水资源分区" underline="true"/>
+                            <#input id="addr" name="所在地" underline="true"/>
+                            <#input id="intTp" name="取水方式" underline="true"/>
+                            <#input id="groTp" name="地下水类型（深层地下水和浅层地下水）" underline="true"/>
+                            <#input id="lgtd" name="经度" underline="true"/>
+                            <#input id="lttd" name="纬度" underline="true"/>
+                            <#input id="state" name="水源状态" underline="true"/>
+                            <#input id="nt" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WrPdoGroupInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WrPdoGroupInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/szys/wrPdoGroup/wrPdoGroup_info.js"></script>
+@}
